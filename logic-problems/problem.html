@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problem — JS Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="lecture-page">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">JS Notes</a>
+      <a class="back-link" href="index.html">← Back to Index</a>
+    </div>
+  </header>
+
+  <main class="container lecture-container" id="content"></main>
+
+  <script src="problems.js"></script>
+  <script>
+    const id = Number(new URLSearchParams(location.search).get("id"));
+    const i = PROBLEMS.findIndex(p => p.id === id);
+    const box = document.getElementById("content");
+
+    if (i === -1) {
+      box.innerHTML = '<p>Problem nahi mila.</p><a class="back-btn" href="index.html">← Back to Index</a>';
+    } else {
+      const p = PROBLEMS[i];
+      const prev = PROBLEMS[i - 1], next = PROBLEMS[i + 1];
+      document.title = p.title + " — JS Notes";
+
+      box.innerHTML = `
+        <section class="lecture-hero">
+          <p class="eyebrow">${p.topic}</p>
+          <h1>Problem ${p.id}</h1>
+        </section>
+        <article class="card question-card"><h2>Question ❓</h2><p>${p.title}</p></article>
+        <article class="card answer-card"><h2>✅ Answer</h2><p>${p.answer}</p></article>
+        <article class="card example-card"><h2>💡 Example</h2><pre><code id="code"></code></pre></article>
+        <div class="nav-row">
+          ${prev ? `<a class="back-btn" href="problem.html?id=${prev.id}">← Prev</a>` : "<span></span>"}
+          <a class="back-btn" href="index.html">Index</a>
+          ${next ? `<a class="back-btn" href="problem.html?id=${next.id}">Next →</a>` : "<span></span>"}
+        </div>`;
+
+      document.getElementById("code").textContent = p.code;
+    }
+  </script>
+</body>
+</html>

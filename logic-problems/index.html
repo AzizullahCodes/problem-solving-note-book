@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Lecture Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">JS Notes</a>
+      <span class="header-label">My learning notebook</span>
+    </div>
+  </header>
+
+  <main class="container index-page">
+    <section class="intro">
+      <p class="eyebrow">Study library</p>
+      <h1>JavaScript Logic Problems</h1>
+      <p id="count"></p>
+    </section>
+
+    <input id="search" class="search-box" type="search" placeholder="Search problem ya topic...">
+    <div id="list"></div>
+  </main>
+
+  <script src="problems.js"></script>
+  <script>
+    const list = document.getElementById("list");
+    const search = document.getElementById("search");
+    document.getElementById("count").textContent = PROBLEMS.length + " problems";
+
+    function render(items) {
+      const groups = {};
+      items.forEach(p => (groups[p.topic] ||= []).push(p));
+
+      list.innerHTML = Object.entries(groups).map(([topic, arr]) => `
+        <h2 class="list-title">${topic} <small>(${arr.length})</small></h2>
+        <ol class="problems">
+          ${arr.map(p => `
+            <li><a class="problem-link" href="problem.html?id=${p.id}">
+              <span class="p-num">${p.id}</span>
+              <span class="p-text">${p.title}</span>
+              <span class="p-arrow">→</span>
+            </a></li>`).join("")}
+        </ol>`).join("") || "<p>Kuch nahi mila.</p>";
+    }
+
+    search.addEventListener("input", () => {
+      const q = search.value.toLowerCase();
+      render(PROBLEMS.filter(p => (p.title + p.topic + p.id).toLowerCase().includes(q)));
+    });
+
+    render(PROBLEMS);
+  </script>
+</body>
+</html>
