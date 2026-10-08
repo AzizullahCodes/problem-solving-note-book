@@ -42,11 +42,37 @@ console.log(result);
   },
   {
     id: 3,
-    topic: "DOM",
-    title: "What is a document node?",
-    answer: "The document node represents the entire web page and is the starting point for accessing the DOM. Common methods include <code>getElementById()</code>, <code>querySelector()</code>, and <code>createElement()</code>.",
-    code: `const heading = document.querySelector("h1");
-console.log(heading);`
+    topic: "Array",
+    title: "Fizz,Buzz, fizzBuzz problem?",
+    answer: "see code in example",
+    code: `let num = 100;
+let fizz = [];
+let buzz = [];
+let fizzBuzz = []
+for(let i = 1 ; i <= num;i++){
+  // console.log(i) 
+  if(i % 15 === 0){
+    console.log('FizzBuzz')
+    fizzBuzz.push(i)
+  }
+  else if(i % 3 ===0){
+    console.log('Fizz')
+    fizz.push(i)
+  }
+  else if(i % 5 === 0){
+    console.log('buzz')
+    buzz.push(i)
+  }
+  else{
+    console.log(i)
+  }
+
+}
+
+console.log(fizz)
+console.log(buzz)
+console.log(fizzBuzz)
+`
   },
   {
     id: 4,
