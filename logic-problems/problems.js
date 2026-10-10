@@ -76,10 +76,19 @@ console.log(fizzBuzz)
   },
   {
     id: 4,
-    topic: "DOM",
-    title: "What are element nodes and text nodes?",
-    answer: "HTML tags such as <code>div</code>, <code>p</code>, <code>h1</code>, and <code>span</code> become element nodes. The text inside an element is represented by text nodes.",
-    code: `<h2>Hello, I am text inside an element</h2>`
+    topic: "Array",
+    title: "Remove duplicate from array ?",
+    answer: "see in example",
+    code: `let arr = ['apple','mango','apple','banana','mango','orange']
+console.log(arr)
+
+let unique = [];
+for(let item of arr){
+   if(!unique.includes(item)){
+      unique.push(item)
+   }
+}
+console.log(unique)`
   },
   {
     id: 5,
